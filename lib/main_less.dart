@@ -1,30 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:examples_flutter/utils/const.dart';
-import 'package:examples_flutter/utils/navigation_router.dart';
 import 'package:examples_flutter/widgets/MyHomePage.dart';
-import 'package:examples_flutter/widgets/MyTestList.dart';
-import 'package:examples_flutter/screens/splash.dart';
 
-var routes = <String, WidgetBuilder>{
-  "/": (BuildContext context) => MyTestList(title: Constants.appName),
-  "/Splash": (BuildContext context) => SplashScreen(),
-};
-
-void main() async {
-  runApp(MyApp());
+void main() {
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Examples Flutter : Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -38,9 +25,7 @@ class _MyAppState extends State<MyApp> {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      // home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: MyTestList(title: Constants.appName),
-      routes: routes,
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
