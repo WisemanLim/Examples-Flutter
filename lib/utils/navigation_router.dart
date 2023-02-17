@@ -20,4 +20,8 @@ class NavigationRouter {
   static void switchToKakaoLogin(BuildContext context) {
     Navigator.pushNamed(context, "/klogin");
   }
+
+  static void switchToNaverLogin(BuildContext context) {
+    Navigator.pushNamed(context, "/nlogin");
+  }
 }

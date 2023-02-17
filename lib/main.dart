@@ -4,8 +4,9 @@ import 'package:examples_flutter/utils/navigation_router.dart';
 import 'package:examples_flutter/screens/my_home_page.dart';
 import 'package:examples_flutter/screens/my_test_list.dart';
 import 'package:examples_flutter/screens/splash.dart';
-import 'package:examples_flutter/screens/kakao_login.dart';
-// import 'package:examples_flutter/screens/kakao_login2.dart';
+// import 'package:examples_flutter/screens/kakao_login.dart'; // login => crash error
+import 'package:examples_flutter/screens/kakao_login2.dart';
+import 'package:examples_flutter/screens/naver_login.dart';
 
 final routes = <String, WidgetBuilder>{
   "/home": (BuildContext context) =>
@@ -13,6 +14,7 @@ final routes = <String, WidgetBuilder>{
   "/list": (BuildContext context) => MyTestList(title: Constants.appName),
   "/splash": (BuildContext context) => SplashScreen(),
   "/klogin": (BuildContext context) => KakaoLoginScreen(),
+  "/nlogin": (BuildContext context) => NaverLoginScreen(),
 };
 
 void main() {
@@ -42,7 +44,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       // home: MyTestList(title: Constants.appName),
-      home: KakaoLoginScreen(),
+      // home: KakaoLoginScreen(),
+      home: NaverLoginScreen(),
       routes: routes,
     );
   }

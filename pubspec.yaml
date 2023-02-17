@@ -41,6 +41,7 @@ dependencies:
   kakao_login: ^0.6.0
   kakao_flutter_sdk_user: ^1.4.0
   http: ^0.13.5
+  flutter_naver_login: ^1.7.0
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,7 @@ flutter:
     - assets/images/google_icon.png
     - assets/images/kakao_icon.png
     - assets/images/kakao_logo.png
+    - assets/images/naver_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

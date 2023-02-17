@@ -52,6 +52,36 @@ class _MyTestListState extends State<MyTestList> {
               const Divider(),
               ListTile(
                 title: const Text(
+                  '카카오 소셜 로그인 시험',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                subtitle: const Text('Kakao SignIn'),
+                leading: Icon(
+                  Icons.login,
+                  color: Colors.blue[500],
+                ),
+                onTap: () => {
+                  NavigationRouter.switchToKakaoLogin(context)
+                },
+              ),
+              const Divider(),
+              ListTile(
+                title: const Text(
+                  '네이버 소셜 로그인 시험',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                subtitle: const Text('Naver SignIn'),
+                leading: Icon(
+                  Icons.login,
+                  color: Colors.blue[500],
+                ),
+                onTap: () => {
+                  NavigationRouter.switchToKakaoLogin(context)
+                },
+              ),
+              const Divider(),
+              ListTile(
+                title: const Text(
                   '대시보드',
                   style: TextStyle(fontWeight: FontWeight.w500),
                 ),
