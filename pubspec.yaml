@@ -38,6 +38,9 @@ dependencies:
   cupertino_icons: ^1.0.5
   font_awesome_flutter: ^10.3.0
   flutter_svg: ^1.1.6
+  kakao_login: ^0.6.0
+  kakao_flutter_sdk_user: ^1.4.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -62,9 +65,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/google_icon.png
+    - assets/images/kakao_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

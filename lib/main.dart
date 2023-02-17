@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:examples_flutter/utils/const.dart';
 import 'package:examples_flutter/utils/navigation_router.dart';
-import 'package:examples_flutter/widgets/MyHomePage.dart';
-import 'package:examples_flutter/widgets/MyTestList.dart';
+import 'package:examples_flutter/screens/my_home_page.dart';
+import 'package:examples_flutter/screens/my_test_list.dart';
 import 'package:examples_flutter/screens/splash.dart';
+import 'package:examples_flutter/screens/kakao_login.dart';
+// import 'package:examples_flutter/screens/kakao_login2.dart';
 
 final routes = <String, WidgetBuilder>{
-  "/Home": (BuildContext context) => MyHomePage(title: 'Flutter Demo Home Page'),
-  "/List": (BuildContext context) => MyTestList(title: Constants.appName),
-  "/Splash": (BuildContext context) => SplashScreen(),
+  "/home": (BuildContext context) =>
+      MyHomePage(title: 'Flutter Demo Home Page'),
+  "/list": (BuildContext context) => MyTestList(title: Constants.appName),
+  "/splash": (BuildContext context) => SplashScreen(),
+  "/klogin": (BuildContext context) => KakaoLoginScreen(),
 };
 
 void main() {
@@ -37,7 +41,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: MyTestList(title: Constants.appName),
+      // home: MyTestList(title: Constants.appName),
+      home: KakaoLoginScreen(),
       routes: routes,
     );
   }

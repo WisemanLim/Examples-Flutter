@@ -5,7 +5,7 @@ import 'package:examples_flutter/utils/const.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(Duration(milliseconds: 3000),
-            () => NavigationRouter.switchToLogin(context));
+        () => NavigationRouter.switchToLogin(context));
   }
 
   @override
