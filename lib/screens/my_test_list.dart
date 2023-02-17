@@ -37,6 +37,7 @@ class _MyTestListState extends State<MyTestList> {
                   NavigationRouter.switchToSplash(context)
                 },
               ),
+              const Divider(),
               ListTile(
                 title: const Text(
                   '로그인/회원가입',
@@ -49,7 +50,6 @@ class _MyTestListState extends State<MyTestList> {
                 ),
                 onTap: () => {},
               ),
-              const Divider(),
               ListTile(
                 title: const Text(
                   '카카오 소셜 로그인 시험',
@@ -64,7 +64,6 @@ class _MyTestListState extends State<MyTestList> {
                   NavigationRouter.switchToKakaoLogin(context)
                 },
               ),
-              const Divider(),
               ListTile(
                 title: const Text(
                   '네이버 소셜 로그인 시험',
@@ -76,7 +75,7 @@ class _MyTestListState extends State<MyTestList> {
                   color: Colors.blue[500],
                 ),
                 onTap: () => {
-                  NavigationRouter.switchToKakaoLogin(context)
+                  NavigationRouter.switchToNaverLogin(context)
                 },
               ),
               const Divider(),

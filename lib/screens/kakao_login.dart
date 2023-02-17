@@ -4,7 +4,7 @@ import 'package:kakao_login/kakao_login.dart';
 
 class KakaoLoginScreen extends StatefulWidget {
   @override
-  State<KakaoLoginScreen> createState() => _KakaoLoginScreenState();
+  _KakaoLoginScreenState createState() => _KakaoLoginScreenState();
 }
 
 class _KakaoLoginScreenState extends State<KakaoLoginScreen> {
@@ -42,14 +42,13 @@ class _KakaoLoginScreenState extends State<KakaoLoginScreen> {
 
   Future<void> _login() async {
     try {
-      final login = await kakaoSignIn.logIn();
-      login.when(() => {}, success: (value) {}, fail: (error) {
-        _updateLoginMessage("${error.cause} ${error.message}");
-      });
-      if (login.isValue) {
-        _processLoginResult("loggedIn");
-      } else {}
-
+      final login = await kakaoSignIn.logIn(); // crash
+      // login.when(() => {}, success: (value) {}, fail: (error) {
+      //   _updateLoginMessage("${error.cause} ${error.message}");
+      // });
+      // if (login.isValue) {
+      //   _processLoginResult("loggedIn");
+      // } else {}
       final result = await kakaoSignIn.currentUser;
       result.when(() => {}, success: (value) {}, fail: (error) {
         _updateLoginMessage("${error.cause} ${error.message}");
@@ -167,24 +166,24 @@ class _KakaoLoginScreenState extends State<KakaoLoginScreen> {
       final userID = (user.id == null) ? 'None' : user.id;
       final userEmail = (account!.email == null) ? 'None' : account.email;
       final userPhoneNumber =
-          (account.phoneNumber == null) ? 'None' : account.phoneNumber;
+      (account.phoneNumber == null) ? 'None' : account.phoneNumber;
       final userNickname = (account.profile!.nickname == null)
           ? 'None'
           : account.profile!.nickname;
       final userGender = (account.gender == null) ? 'None' : account.gender;
       final userAgeRange =
-          (account.ageRange == null) ? 'None' : account.ageRange;
+      (account.ageRange == null) ? 'None' : account.ageRange;
       final userBirthyear =
-          (account.birthyear == null) ? 'None' : account.birthyear;
+      (account.birthyear == null) ? 'None' : account.birthyear;
       final userBirthday =
-          (account.birthday == null) ? 'None' : account.birthday;
+      (account.birthday == null) ? 'None' : account.birthday;
       final userProfileImagePath = (account.profile!.profileImageUrl == null)
           ? 'None'
           : account.profile!.profileImageUrl.toString();
       final userThumbnailImagePath =
-          (account.profile!.thumbnailImageUrl == null)
-              ? 'None'
-              : account.profile!.thumbnailImageUrl.toString();
+      (account.profile!.thumbnailImageUrl == null)
+          ? 'None'
+          : account.profile!.thumbnailImageUrl.toString();
 
       _updateAccountMessage('- ID is ${userID}\n'
           '- Email is ${userEmail}\n'

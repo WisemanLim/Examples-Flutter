@@ -7,10 +7,11 @@ import 'package:examples_flutter/screens/splash.dart';
 // import 'package:examples_flutter/screens/kakao_login.dart'; // login => crash error
 import 'package:examples_flutter/screens/kakao_login2.dart';
 import 'package:examples_flutter/screens/naver_login.dart';
+// import 'package:examples_flutter/screens/naver_login2.dart';
 
 final routes = <String, WidgetBuilder>{
   "/home": (BuildContext context) =>
-      MyHomePage(title: 'Flutter Demo Home Page'),
+      MyHomePage(title: Constants.appName),
   "/list": (BuildContext context) => MyTestList(title: Constants.appName),
   "/splash": (BuildContext context) => SplashScreen(),
   "/klogin": (BuildContext context) => KakaoLoginScreen(),
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: Constants.appName,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -43,9 +44,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      // home: MyTestList(title: Constants.appName),
+      home: MyTestList(title: Constants.appName),
       // home: KakaoLoginScreen(),
-      home: NaverLoginScreen(),
+      // home: NaverLoginScreen(),
       routes: routes,
     );
   }

@@ -1,103 +1,138 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
-import 'package:http/http.dart' as http;
-import 'package:examples_flutter/utils/login_platform.dart';
+
+final GlobalKey<ScaffoldMessengerState> snackbarKey = GlobalKey<ScaffoldMessengerState>();
 
 class NaverLoginScreen extends StatefulWidget {
   const NaverLoginScreen({Key? key}) : super(key: key);
-
   @override
-  State<NaverLoginScreen> createState() => _NaverLoginScreenState();
+  _NaverLoginScreenState createState() => new _NaverLoginScreenState();
 }
 
 class _NaverLoginScreenState extends State<NaverLoginScreen> {
-  LoginPlatform _loginPlatform = LoginPlatform.none;
+  bool isLogin = false;
+  String? accesToken;
+  String? expiresAt;
+  String? tokenType;
+  String? name;
+  String? refreshToken;
 
-  void signInWithNaver() async {
-    final NaverLoginResult result = await FlutterNaverLogin.logIn();
-
-    if (result.status == NaverLoginStatus.loggedIn) {
-      print('accessToken = ${result.accessToken}');
-      print('id = ${result.account.id}');
-      print('email = ${result.account.email}');
-      print('name = ${result.account.name}');
-
-      setState(() {
-        _loginPlatform = LoginPlatform.naver;
-      });
-    }
-  }
-
-  void signOut() async {
-    switch (_loginPlatform) {
-      case LoginPlatform.facebook:
-        break;
-      case LoginPlatform.google:
-        break;
-      case LoginPlatform.kakao:
-        break;
-      case LoginPlatform.naver:
-        await FlutterNaverLogin.logOut();
-        break;
-      case LoginPlatform.apple:
-        break;
-      case LoginPlatform.none:
-        break;
-    }
-
-    setState(() {
-      _loginPlatform = LoginPlatform.none;
-    });
+  /// Show [error] content in a ScaffoldMessenger snackbar
+  void _showSnackError(String error) {
+    snackbarKey.currentState?.showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.red,
+        content: Text(error.toString()),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: _loginPlatform != LoginPlatform.none
-              ? _logoutButton()
-              : Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      appBar: AppBar(
+        title: const Text(
+          'Flutter Naver Login Sample',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        children: [
+          Column(
             children: [
-              _loginButton(
-                'naver_logo',
-                signInWithNaver,
-              ),
+              Text('isLogin: $isLogin\n'),
+              Text('accesToken: $accesToken\n'),
+              Text('refreshToken: $refreshToken\n'),
+              Text('tokenType: $tokenType\n'),
+              Text('user: $name\n'),
             ],
-          )),
-    );
-  }
-
-  Widget _loginButton(String path, VoidCallback onTap) {
-    return Card(
-      elevation: 5.0,
-      shape: const CircleBorder(),
-      clipBehavior: Clip.antiAlias,
-      child: Ink.image(
-        image: AssetImage('asset/image/$path.png'),
-        width: 60,
-        height: 60,
-        child: InkWell(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(35.0),
           ),
-          onTap: onTap,
-        ),
+          ElevatedButton(
+            onPressed: buttonLoginPressed,
+            child: const Text("LogIn"),
+          ),
+          ElevatedButton(
+            onPressed: buttonLogoutPressed,
+            child: const Text("LogOut"),
+          ),
+          ElevatedButton(
+            onPressed: buttonLogoutAndDeleteTokenPressed,
+            child: const Text("LogOutAndDeleteToken"),
+          ),
+          ElevatedButton(
+            onPressed: buttonTokenPressed,
+            child: const Text("GetToken"),
+          ),
+          ElevatedButton(
+            onPressed: buttonGetUserPressed,
+            child: const Text("GetUser"),
+          )
+        ],
       ),
     );
   }
 
-  Widget _logoutButton() {
-    return ElevatedButton(
-      onPressed: signOut,
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
-          const Color(0xff0165E1),
-        ),
-      ),
-      child: const Text('로그아웃'),
-    );
+  Future<void> buttonLoginPressed() async {
+    try {
+      final NaverLoginResult res = await FlutterNaverLogin.logIn();
+      setState(() {
+        name = res.account.nickname;
+        isLogin = true;
+      });
+    } catch (error) {
+      _showSnackError(error.toString());
+    }
+  }
+
+  Future<void> buttonTokenPressed() async {
+    try {
+      final NaverAccessToken res = await FlutterNaverLogin.currentAccessToken;
+      setState(() {
+        refreshToken = res.refreshToken;
+        accesToken = res.accessToken;
+        tokenType = res.tokenType;
+      });
+    } catch (error) {
+      _showSnackError(error.toString());
+    }
+  }
+
+  Future<void> buttonLogoutPressed() async {
+    try {
+      await FlutterNaverLogin.logOut();
+      setState(() {
+        isLogin = false;
+        accesToken = null;
+        tokenType = null;
+        name = null;
+      });
+    } catch (error) {
+      _showSnackError(error.toString());
+    }
+  }
+
+  Future<void> buttonLogoutAndDeleteTokenPressed() async {
+    try {
+      await FlutterNaverLogin.logOutAndDeleteToken();
+      setState(() {
+        isLogin = false;
+        accesToken = null;
+        tokenType = null;
+        name = null;
+      });
+    } catch (error) {
+      _showSnackError(error.toString());
+    }
+  }
+
+  Future<void> buttonGetUserPressed() async {
+    try {
+      final NaverAccountResult res = await FlutterNaverLogin.currentAccount();
+      setState(() => name = res.name);
+    } catch (error) {
+      _showSnackError(error.toString());
+    }
   }
 }

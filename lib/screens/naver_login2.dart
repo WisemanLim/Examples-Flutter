@@ -1,51 +1,32 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:http/http.dart' as http;
-import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:examples_flutter/utils/login_platform.dart';
 
-class KakaoLoginScreen extends StatefulWidget {
-  const KakaoLoginScreen({Key? key}) : super(key: key);
+class NaverLoginScreen extends StatefulWidget {
+  const NaverLoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<KakaoLoginScreen> createState() => _KakaoLoginScreenState();
+  State<NaverLoginScreen> createState() => _NaverLoginScreenState();
 }
 
-class _KakaoLoginScreenState extends State<KakaoLoginScreen> {
-  @override
-  void initState() {
-    super.initState();
-    KakaoSdk.init(nativeAppKey: 'b54b6d3a839274f2a9da14eb6c0e4a53');
-  }
-
+class _NaverLoginScreenState extends State<NaverLoginScreen> {
   LoginPlatform _loginPlatform = LoginPlatform.none;
 
-  void signInWithKakao() async {
-    try {
-      bool isInstalled = await isKakaoTalkInstalled();
+  void signInWithNaver() async {
+    final NaverLoginResult result = await FlutterNaverLogin.logIn();
 
-      OAuthToken token = isInstalled
-          ? await UserApi.instance.loginWithKakaoTalk()
-          : await UserApi.instance.loginWithKakaoAccount();
-
-      final url = Uri.https('kapi.kakao.com', '/v2/user/me');
-
-      final response = await http.get(
-        url,
-        headers: {
-          HttpHeaders.authorizationHeader: 'Bearer ${token.accessToken}'
-        },
-      );
-
-      final profileInfo = json.decode(response.body);
-      print(profileInfo.toString());
+    if (result.status == NaverLoginStatus.loggedIn) {
+      print('accessToken = ${result.accessToken}');
+      print('id = ${result.account.id}');
+      print('email = ${result.account.email}');
+      print('name = ${result.account.name}');
 
       setState(() {
-        _loginPlatform = LoginPlatform.kakao;
+        _loginPlatform = LoginPlatform.naver;
       });
-    } catch (error) {
-      print('카카오톡으로 로그인 실패 $error');
     }
   }
 
@@ -56,9 +37,9 @@ class _KakaoLoginScreenState extends State<KakaoLoginScreen> {
       case LoginPlatform.google:
         break;
       case LoginPlatform.kakao:
-        await UserApi.instance.logout();
         break;
       case LoginPlatform.naver:
+        await FlutterNaverLogin.logOut();
         break;
       case LoginPlatform.apple:
         break;
@@ -78,15 +59,14 @@ class _KakaoLoginScreenState extends State<KakaoLoginScreen> {
           child: _loginPlatform != LoginPlatform.none
               ? _logoutButton()
               : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _loginButton(
-                      // 'kakao_icon',
-                      'kakao_logo',
-                      signInWithKakao,
-                    )
-                  ],
-                )),
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _loginButton(
+                'naver_logo',
+                signInWithNaver,
+              ),
+            ],
+          )),
     );
   }
 
