@@ -81,7 +81,8 @@ class _KakaoLoginScreenState extends State<KakaoLoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _loginButton(
-                      'kakao_logo',
+                      'kakao_icon',
+                      // 'kakao_logo',
                       signInWithKakao,
                     )
                   ],
@@ -95,7 +96,7 @@ class _KakaoLoginScreenState extends State<KakaoLoginScreen> {
       shape: const CircleBorder(),
       clipBehavior: Clip.antiAlias,
       child: Ink.image(
-        image: AssetImage('asset/image/$path.png'),
+        image: AssetImage('asset/images/$path.png'),
         width: 60,
         height: 60,
         child: InkWell(

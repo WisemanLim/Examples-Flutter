@@ -1,33 +1,79 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.wisescience.examples_flutter">
-	<application android:label="ExamplesFlutter" android:name="${applicationName}" android:icon="@mipmap/ic_launcher">
-		<!-- 앱바로가기 이름 변경 : android:label을 변경 및 적용 -->
-		<activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
-			<!--
-			Specifies an Android theme to apply to this Activity as soon as
-			the Android process has started. This theme is visible to the user
-			while the Flutter UI initializes. After that, this theme continues
-			to determine the Window background behind the Flutter UI.
-			-->
-			<meta-data android:name="io.flutter.embedding.android.NormalTheme" android:resource="@style/NormalTheme" />
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
-		<!-- Kakao Login and Redirect -->
-		<activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity" android:exported="true">
-			<intent-filter android:label="flutter_web_auth">
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
-				<!-- Redirect URI, "kakao${YOUR_NATIVE_APP_KEY}://oauth" 형식 -->
-				<data android:scheme="kakaob54b6d3a839274f2a9da14eb6c0e4a53" android:host="oauth" />
-			</intent-filter>
-		</activity>
-		<!--
-		Don't delete the meta-data below.
-		This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-		-->
-		<meta-data android:name="flutterEmbedding" android:value="2" />
-	</application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wisescience.examples_flutter">
+
+    <application
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher"
+        android:label="ExamplesFlutter">
+        <!-- 앱바로가기 이름 변경 : android:label을 변경 및 적용 -->
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:exported="true"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:windowSoftInputMode="adjustResize">
+            <!--
+            Specifies an Android theme to apply to this Activity as soon as
+            the Android process has started. This theme is visible to the user
+            while the Flutter UI initializes. After that, this theme continues
+            to determine the Window background behind the Flutter UI.
+            -->
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- Kakao Login and Redirect -->
+        <activity
+            android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity"
+            android:exported="true">
+            <intent-filter android:label="flutter_web_auth">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Redirect URI, "kakao${YOUR_NATIVE_APP_KEY}://oauth" 형식 -->
+                <data
+                    android:host="oauth"
+                    android:scheme="kakaob54b6d3a839274f2a9da14eb6c0e4a53" />
+            </intent-filter>
+        </activity>
+        <!-- 카카오 로그인 구현을 위한 설정파일 -->
+<!--        <activity-->
+<!--            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter android:label="flutter_web_auth">-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--                &lt;!&ndash; Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ &ndash;&gt;-->
+<!--                <data-->
+<!--                    android:host="oauth"-->
+<!--                    android:scheme="kakaob54b6d3a839274f2a9da14eb6c0e4a53" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+        <!--
+        Don't delete the meta-data below.
+        This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+        -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+        <!-- 네이버 로그인 구현을 위한 설정파일 -->
+        <meta-data
+            android:name="com.naver.sdk.clientId"
+            android:value="@string/client_id" />
+        <meta-data
+            android:name="com.naver.sdk.clientSecret"
+            android:value="@string/client_secret" />
+        <meta-data
+            android:name="com.naver.sdk.clientName"
+            android:value="@string/client_name" />
+    </application>
 </manifest>

@@ -43,17 +43,20 @@ class _KakaoLoginScreenState extends State<KakaoLoginScreen> {
   Future<void> _login() async {
     try {
       final login = await kakaoSignIn.logIn();
-      login.when(() => () {}, success: (value) {
-        final result = await kakaoSignIn.currentUser;
-        result.when(() => {}, success: (value) {}, fail: (error) {
-          _updateLoginMessage("${error.cause} ${error.message}");
-        });
-        if (result.isValue) {
-          _processLoginResult("loggedIn");
-        } else {}
-      }, fail: (e) {
-        _updateLoginMessage("${e.cause} ${e.message}");
+      login.when(() => {}, success: (value) {}, fail: (error) {
+        _updateLoginMessage("${error.cause} ${error.message}");
       });
+      if (login.isValue) {
+        _processLoginResult("loggedIn");
+      } else {}
+
+      final result = await kakaoSignIn.currentUser;
+      result.when(() => {}, success: (value) {}, fail: (error) {
+        _updateLoginMessage("${error.cause} ${error.message}");
+      });
+      if (result.isValue) {
+        _processLoginResult("loggedIn");
+      } else {}
     } catch (e) {
       _updateLoginMessage("${e}");
     }
