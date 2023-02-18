@@ -8,6 +8,8 @@ import 'package:examples_flutter/screens/splash.dart';
 import 'package:examples_flutter/screens/kakao_login2.dart';
 // import 'package:examples_flutter/screens/naver_login.dart';
 import 'package:examples_flutter/screens/naver_login2.dart';
+import 'package:examples_flutter/screens/sqlite_test.dart';
+import 'package:examples_flutter/utils/check_internet.dart';
 
 final routes = <String, WidgetBuilder>{
   "/home": (BuildContext context) =>
@@ -16,6 +18,8 @@ final routes = <String, WidgetBuilder>{
   "/splash": (BuildContext context) => SplashScreen(),
   "/klogin": (BuildContext context) => KakaoLoginScreen(),
   "/nlogin": (BuildContext context) => NaverLoginScreen(),
+  "/sqlite": (BuildContext context) => SQLiteTestScreen(),
+  "/chkinternet": (BuildContext context) => ConnectivityStatusExample(),
 };
 
 void main() {

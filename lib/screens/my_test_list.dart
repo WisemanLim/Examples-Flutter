@@ -40,6 +40,35 @@ class _MyTestListState extends State<MyTestList> {
               const Divider(),
               ListTile(
                 title: const Text(
+                  '통신상태 체크',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                subtitle: const Text('Check Internet'),
+                leading: Icon(
+                  Icons.login,
+                  color: Colors.blue[500],
+                ),
+                onTap: () => {
+                  NavigationRouter.switchToCheckInternet(context)
+                },
+              ),
+              ListTile(
+                title: const Text(
+                  '데이터베이스 SQLITE',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                subtitle: const Text('SQLite'),
+                leading: Icon(
+                  Icons.login,
+                  color: Colors.blue[500],
+                ),
+                onTap: () => {
+                  NavigationRouter.switchToSQLite(context)
+                },
+              ),
+              const Divider(),
+              ListTile(
+                title: const Text(
                   '로그인/회원가입',
                   style: TextStyle(fontWeight: FontWeight.w500),
                 ),

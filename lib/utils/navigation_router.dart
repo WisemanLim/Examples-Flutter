@@ -24,4 +24,12 @@ class NavigationRouter {
   static void switchToNaverLogin(BuildContext context) {
     Navigator.pushNamed(context, "/nlogin");
   }
+
+  static void switchToSQLite(BuildContext context) {
+    Navigator.pushNamed(context, "/sqlite");
+  }
+
+  static void switchToCheckInternet(BuildContext context) {
+    Navigator.pushNamed(context, '/chkinternet');
+  }
 }
