@@ -6,8 +6,8 @@ import 'package:examples_flutter/screens/my_test_list.dart';
 import 'package:examples_flutter/screens/splash.dart';
 // import 'package:examples_flutter/screens/kakao_login.dart'; // login => crash error
 import 'package:examples_flutter/screens/kakao_login2.dart';
-import 'package:examples_flutter/screens/naver_login.dart';
-// import 'package:examples_flutter/screens/naver_login2.dart';
+// import 'package:examples_flutter/screens/naver_login.dart';
+import 'package:examples_flutter/screens/naver_login2.dart';
 
 final routes = <String, WidgetBuilder>{
   "/home": (BuildContext context) =>

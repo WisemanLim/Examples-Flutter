@@ -41,14 +41,29 @@ class _KakaoLoginScreenState extends State<KakaoLoginScreen> {
   }
 
   Future<void> _login() async {
+    bool isLoginOk = false;
     try {
       final login = await kakaoSignIn.logIn(); // crash
-      // login.when(() => {}, success: (value) {}, fail: (error) {
-      //   _updateLoginMessage("${error.cause} ${error.message}");
-      // });
-      // if (login.isValue) {
-      //   _processLoginResult("loggedIn");
-      // } else {}
+// D/KakaoLogin( 4641): [onMethodCall] -> logIn
+// D/KakaoLogin( 4641): 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
+// W/xamples_flutte( 4641): Accessing hidden method Ljava/lang/invoke/MethodHandles$Lookup;-><init>(Ljava/lang/Class;I)V (greylist, reflection, allowed)
+// W/xamples_flutte( 4641): Accessing hidden method Lcom/android/org/conscrypt/OpenSSLSocketImpl;->setUseSessionTickets(Z)V (greylist,core-platform-api, reflection, allowed)
+// W/xamples_flutte( 4641): Accessing hidden method Lcom/android/org/conscrypt/OpenSSLSocketImpl;->setHostname(Ljava/lang/String;)V (greylist,core-platform-api, reflection, allowed)
+// W/xamples_flutte( 4641): Accessing hidden method Lcom/android/org/conscrypt/OpenSSLSocketImpl;->getAlpnSelectedProtocol()[B (greylist,core-platform-api, reflection, allowed)
+// W/xamples_flutte( 4641): Accessing hidden method Lcom/android/org/conscrypt/OpenSSLSocketImpl;->setAlpnProtocols([B)V (greylist,core-platform-api, reflection, allowed)
+// W/xamples_flutte( 4641): Accessing hidden method Ldalvik/system/CloseGuard;->get()Ldalvik/system/CloseGuard; (greylist,core-platform-api, reflection, allowed)
+// W/xamples_flutte( 4641): Accessing hidden method Ldalvik/system/CloseGuard;->open(Ljava/lang/String;)V (greylist,core-platform-api, reflection, allowed)
+// W/xamples_flutte( 4641): Accessing hidden method Ldalvik/system/CloseGuard;->warnIfOpen()V (greylist,core-platform-api, reflection, allowed)
+// D/NetworkSecurityConfig( 4641): No Network Security Config specified, using platform default
+// D/KakaoLogin( 4641): 카카오톡으로 로그인
+// W/ActivityThread( 4641): handleWindowVisibility: no activity for token android.os.BinderProxy@9ded4ed
+// D/PhoneWindow( 4641): forceLight changed to true [] from com.android.internal.policy.PhoneWindow.updateForceLightNavigationBar:4238 com.android.internal.policy.DecorView.updateColorViews:1491 com.android.internal.policy.PhoneWindow.dispatchWindowAttributesChanged:3216 android.view.Window.setFlags:1148 com.android.internal.policy.PhoneWindow.generateLayout:2444
+// I/MultiWindowDecorSupport( 4641): updateCaptionType >> DecorView@f98e407[], isFloating: false, isApplication: true, hasWindowDecorCaption: false, hasWindowControllerCallback: true
+// D/MultiWindowDecorSupport( 4641): setCaptionType = 0, DecorView = DecorView@f98e407[]
+// D/AndroidRuntime( 4641): Shutting down VM
+// E/AndroidRuntime( 4641): FATAL EXCEPTION: main
+      // final login = await kakaoSignIn.logInWithKakaoTalk(); // No implementation
+      // final login = await kakaoSignIn.logInWithKakaoAccount(); // No implementation
       final result = await kakaoSignIn.currentUser;
       result.when(() => {}, success: (value) {}, fail: (error) {
         _updateLoginMessage("${error.cause} ${error.message}");
