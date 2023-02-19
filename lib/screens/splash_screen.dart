@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:examples_flutter/utils/configuration.dart';
 import 'package:examples_flutter/utils/constants.dart';
 import 'package:examples_flutter/screens/splash_content.dart';
+import 'package:examples_flutter/utils/navigation_router.dart';
 import 'package:examples_flutter/widgets/snackbar.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -78,7 +79,8 @@ class _BodyState extends State<Body> {
                     Spacer(),
                     SplahButton(
                       text: "Continue",
-                      press: () => CustomSnackBar(context, const Text('Continue')),
+                      // onPressed: () => NavigationRouter.switchToList(context),
+                      onPressed: () => CustomSnackBar(context, const Text('Continue')),
                     ),
                     Spacer(),
                   ],
@@ -109,10 +111,10 @@ class SplahButton extends StatelessWidget {
   const SplahButton({
     Key? key,
     required this.text,
-    required this.press,
+    required this.onPressed,
   }) : super(key: key);
   final String text;
-  final Function press;
+  final VoidCallback onPressed; // final Function onPressed; (or) final void Function onPressed
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +129,6 @@ class SplahButton extends StatelessWidget {
           // color: Colors.black,
           primary: Color(0xff3C8590),
         ),
-        onPressed: () {},
         child: Text(
           text,
           style: TextStyle(
@@ -135,6 +136,7 @@ class SplahButton extends StatelessWidget {
             color: Colors.white,
           ),
         ),
+        onPressed: onPressed,
       ),
     );
   }

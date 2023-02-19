@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 class NavigationRouter {
   static void switchToMain(BuildContext context) {
+    Navigator.pushNamed(context, "/");
+  }
+
+  static void switchToHome(BuildContext context) {
     Navigator.pushNamed(context, "/home");
   }
 
