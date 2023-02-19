@@ -3,7 +3,8 @@ import 'package:examples_flutter/utils/const.dart';
 import 'package:examples_flutter/utils/navigation_router.dart';
 import 'package:examples_flutter/screens/my_home_page.dart';
 import 'package:examples_flutter/screens/my_test_list.dart';
-import 'package:examples_flutter/screens/splash.dart';
+// import 'package:examples_flutter/screens/splash.dart';
+import 'package:examples_flutter/screens/splash_screen.dart';
 // import 'package:examples_flutter/screens/kakao_login.dart'; // login => crash error
 import 'package:examples_flutter/screens/kakao_login2.dart';
 // import 'package:examples_flutter/screens/naver_login.dart';
