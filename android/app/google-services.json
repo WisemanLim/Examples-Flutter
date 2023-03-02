@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "597668682387",
+    "project_id": "wisescience-fluttersample",
+    "storage_bucket": "wisescience-fluttersample.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597668682387:android:fd846d274316304172cb66",
+        "android_client_info": {
+          "package_name": "com.wisescience.examples_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597668682387-2akdogc134djacalgrdq50mghiq51kgp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3ZQMlWHJkKaHseVXiVuxBMPUJEAXVIcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "597668682387-2akdogc134djacalgrdq50mghiq51kgp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
